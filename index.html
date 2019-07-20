@@ -14,9 +14,6 @@
 
 <body>
 
-
-    <button id="click-button">Click Me!!!!</button>
-
     <div class="container">
         <div class="jumbotron">
             <h1>Gotham Train Station</h1>
@@ -25,19 +22,27 @@
 
         <div class="card">
             <div class="card-body">
-                <p> Current Time Schedule</p>
-                <table>
-                    <tr>
-                        <td></td>
-                    </tr>
+                    table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Monthly Rate ($)</th>
+                        <th scope="col">Total Billed ($)</th>
+                        <th scope="col">Months Employed</th>
+                      </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr></tr>
+                    </tbody>
                 </table>
-            </div>
         </div>
 
 
         <div class="card">
             <div class="card-body">
-
+                <form>
                 <p>Train Name</p>
                 <input type="text" id="train-name-input">
                 <br>
@@ -55,8 +60,7 @@
                 <br>
 
                 <button type="submit" id="submit" class="primary">Submit</button>
-
-
+            </form>
             </div>
         </div>
 

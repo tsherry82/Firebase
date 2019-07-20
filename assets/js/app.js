@@ -1,8 +1,5 @@
 // **********SUDO COODE**********
-console.log("test")
-
 // **********DATABASE**********
-
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyA8Yb2Cn8rpighS0J6UVvfhpS4yOrIS9Ng",
@@ -15,14 +12,10 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 // **********VARIABLES*********
-
-
 var database = firebase.database();
 
 $("#submit").on("click", function (event) {
-
     event.preventDefault();
 
     var newTrainName = $("#train-name-input").val();
@@ -45,13 +38,24 @@ $("#submit").on("click", function (event) {
     $("#frequency-input").val("")
 
 
-});
-    database.ref().on("child_added" , function(snapshot,prevChildKey){
-        console.log(snapshot.val());
-        var trainName = snapshot.val().name;
-        var trainTime = snapshot.val().time;
-        var trainDestination = snapshot.val().destination;
-        var trainfrequency = snapshot.val().frequency;
+    database.ref().on("child_added" , function(prevChildKey){
+        console.log(prevChildKey.val().name);
+        console.log(prevChildKey.val().destination);
+        console.log(prevChildKey.val().time);
+        console.log(prevChildKey.val().frequency);
     });
 
-    
+    var tr = $("<tr>");
+
+        var tdName = $("<td class='name-display>").text(childSnapshot.val().name);
+        var tdDestination = $("<td class='destination-display>").text(childSnapshot.val().destination);
+        var tdTime = $("<td class='time-display>").text(childSnapshot.val().time);
+        var tdFrequency = $("<td class='frequency-display>").text(childSnapshot.val().frequency);
+        // var tdNext = $("<td>").text(childSnapshot.val().name);
+        // var tdMinutesAway = $("<td>").text(childSnapshot.val().name);
+
+
+        tr.append(tdName).append(tdDestination).append(tdTime).append(tdFrequency).append(tdNext).append(tdMinutesAway);
+
+});
+  
