@@ -6,66 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
-    <title>Document</title>
+
+
+    <title>Gotham City Train Schedule</title>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="jumbotron">
-            <h1>Gotham Train Station</h1>
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="text-center">Gotham Train Station</h1>
+            <h1 class="clock text-center"></h1>
         </div>
-
-
-        <div class="card">
-            <div class="card-body">
-                    table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">Monthly Rate ($)</th>
-                        <th scope="col">Total Billed ($)</th>
-                        <th scope="col">Months Employed</th>
-                      </tr>
-                    </thead>
-                    <tbody class="tbody">
-                        <tr></tr>
-                    </tbody>
-                </table>
-        </div>
-
-
-        <div class="card">
-            <div class="card-body">
-                <form>
-                <p>Train Name</p>
-                <input type="text" id="train-name-input">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">Current Train Schedule</div>
+                    <div class="card-body"></div>
+                    <table class="table table-sm" id="train table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Frequency (min)</th>
+                                <th scope="col">Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
                 <br>
 
-                <p>Destination</p>
-                <input type="text" id="destination-input">
-                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header">Add New Trains</div>
+                            <div class="card-body">
+                                <form>
+                                    <p>Train Name</p>
+                                    <input type="text" id="train-name-input">
+                                    <br>
 
-                <p>First Train Time (Military)</p>
-                <input type="text" id="train-time-input">
-                <br>
+                                    <p>Destination</p>
+                                    <input type="text" id="destination-input">
+                                    <br>
 
-                <p>Frequency (min)</p>
-                <input type="text" id="frequency-input">
-                <br>
+                                    <p>First Train Time (HH:mm - Military Time)</p>
+                                    <input type="text" id="train-time-input">
+                                    <br>
 
-                <button type="submit" id="submit" class="primary">Submit</button>
-            </form>
+                                    <p>Frequency (min)</p>
+                                    <input type="text" id="frequency-input">
+                                    <br>
+
+                                    <button type="submit" id="submit" class="primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-
 
 
     <script src="https://code.jquery.com/jquery.js"></script>
