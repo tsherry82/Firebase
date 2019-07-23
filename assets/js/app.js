@@ -18,8 +18,8 @@ var database = firebase.database();
 
 
 
-var update = function() {
-  $('.clock').html(moment().format(' H:mm:ss'));
+var update = function () {
+    $('.clock').html(moment().format(' H:mm:ss'));
 }
 setInterval(update, 1000);
 
@@ -53,23 +53,28 @@ $("#submit").on("click", function (event) {
         var trainTime = childSnapShot.val().time;
         var trainFrequency = childSnapShot.val().frequency;
 
+        // **********TIME VARIABLES**********
+        // current time
+        var now = moment();
+        // time converted
+        var firstTimeConverted = moment(trainTime, "HH:mm");
+        // difference between the times
+        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        // time apart (remainder)
+        var tRemainder = diffTime % trainFrequency;
 
-        var trainStartPretty = moment.unix(trainTime).format("MM/DD/YYYY");
+        // Minute Until Train
+        var tMinutesTillTrain = trainFrequency - tRemainder;
 
-        var nextTrain = trainStartPretty + trainFrequency;
-
-
-
-
-
-
+        // Next Train
+        var nextTrain = moment().add(tMinutesTillTrain, "m").format("HH:mm");
 
         var tr = $("<tr>").append(
             $("<td>").text(trainName),
             $("<td>").text(trainDestination),
-            $("<td>").text(trainTime),
-            $("<td>").text(trainFrequency),
             $("<td>").text(nextTrain),
+            $("<td>").text(trainFrequency),
+            $("<td>").text(tMinutesTillTrain),
         )
 
         $(".tbody").append(tr);
