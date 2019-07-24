@@ -44,7 +44,7 @@ $("#submit").on("click", function (event) {
     $("#destination-input").val("")
     $("#train-time-input").val("")
     $("#frequency-input").val("")
-
+});
 
     database.ref().on("child_added", function (childSnapShot) {
 
@@ -79,5 +79,5 @@ $("#submit").on("click", function (event) {
 
         $(".tbody").append(tr);
     });
-});
+
 
