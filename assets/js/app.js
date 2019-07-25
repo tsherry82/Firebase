@@ -46,38 +46,36 @@ $("#submit").on("click", function (event) {
     $("#frequency-input").val("")
 });
 
-    database.ref().on("child_added", function (childSnapShot) {
+database.ref().on("child_added", function (childSnapShot) {
 
-        var trainName = childSnapShot.val().name;
-        var trainDestination = childSnapShot.val().destination;
-        var trainTime = childSnapShot.val().time;
-        var trainFrequency = childSnapShot.val().frequency;
+    var trainName = childSnapShot.val().name;
+    var trainDestination = childSnapShot.val().destination;
+    var trainTime = childSnapShot.val().time;
+    var trainFrequency = childSnapShot.val().frequency;
 
-        // **********TIME VARIABLES**********
-        // current time
-        var now = moment();
-        // time converted
-        var firstTimeConverted = moment(trainTime, "HH:mm");
-        // difference between the times
-        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-        // time apart (remainder)
-        var tRemainder = diffTime % trainFrequency;
+    // **********TIME VARIABLES**********
+    // current time
+    var now = moment();
+    // time converted
+    var firstTimeConverted = moment(trainTime, "HH:mm");
+    // difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    // time apart (remainder)
+    var tRemainder = diffTime % trainFrequency;
+    // minute Until Train
+    var tMinutesTillTrain = trainFrequency - tRemainder;
+    // next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "m").format("HH:mm");
 
-        // Minute Until Train
-        var tMinutesTillTrain = trainFrequency - tRemainder;
+    var tr = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(nextTrain),
+        $("<td>").text(trainFrequency + " mins"),
+        $("<td>").text(tMinutesTillTrain + " mins"),
+    )
 
-        // Next Train
-        var nextTrain = moment().add(tMinutesTillTrain, "m").format("HH:mm");
-
-        var tr = $("<tr>").append(
-            $("<td>").text(trainName),
-            $("<td>").text(trainDestination),
-            $("<td>").text(nextTrain),
-            $("<td>").text(trainFrequency),
-            $("<td>").text(tMinutesTillTrain),
-        )
-
-        $(".tbody").append(tr);
-    });
+    $(".tbody").append(tr);
+});
 
 
