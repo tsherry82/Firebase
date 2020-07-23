@@ -1,4 +1,4 @@
-// **********SUDO COODE**********
+
 
 // **********DATABASE**********
 // Your web app's Firebase configuration
@@ -15,8 +15,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 // **********VARIABLES*********
 var database = firebase.database();
-
-
 
 var update = function () {
     $('.clock').html(moment().format(' H:mm:ss'));
@@ -74,7 +72,6 @@ database.ref().on("child_added", function (childSnapShot) {
         $("<td>").text(trainFrequency + " mins"),
         $("<td>").text(tMinutesTillTrain + " mins"),
     )
-
     $(".tbody").append(tr);
 });
 
